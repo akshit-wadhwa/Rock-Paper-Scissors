@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+        <h1>Rock, Paper & Scissors</h1>
+        <div class="buttons">
+            <button class="btn" onclick="
+                userMove='rock';
+                compMove=computerChoice();
+                alert(`Computer chose \'${compMove}\'`);
+                compare(userMove, compMove);
+                ">✊</button>
+            <button class="btn" onclick="
+            userMove='paper';
+            compMove=computerChoice();
+            alert(`Computer chose \'${compMove}\'`);
+            compare(userMove, compMove)
+            ">🖐️</button>
+            <button class="btn" onclick="
+            userMove='scissors';
+            compMove=computerChoice();
+            alert(`Computer chose \'${compMove}\'`);
+            compare(userMove, compMove);
+            ">✌️</button>
+        </div>
+        <button class="resultBtn" onclick="
+        calResult();
+        displayResult();"> Result</button>
+    </div>
+    <script>
+        let compMove='', userMove='',result='';
+        let userPts=0, compPts=0;
+        function computerChoice()
+        {
+            let random = Math.ceil(Math.random()*3);
+            if(random==1){
+                return 'rock';
+            }
+            else if(random==2){
+                return 'paper';
+            }
+            else{
+                return 'scissors';
+            }   
+        } 
+        function compare(userMove, compMove)
+        {
+            if(userMove=='rock'){
+                if(compMove=='paper'){
+                    compPts++;
+                }
+                else if(compMove=='scissors'){
+                    userPts++;
+                }
+                else if (compMove=='rock'){
+                    userPts++;
+                    compPts++;
+                }
+            }
+            else if(userMove=='paper'){
+                if(compMove=='scissors'){
+                    compPts++;
+                }
+                else if(compMove=='rock'){
+                    userPts++;
+                }
+                else if (compMove=='paper'){
+                    userPts++;
+                    compPts++;
+                }
+            }
+            else if(userMove='scissors'){
+                if(compMove=='rock'){
+                    compPts++;
+                }
+                else if(compMove=='paper'){
+                    userPts++;
+                }
+                else if (compMove=='scissors'){
+                    userPts++;
+                    compPts++;
+                }
+            } 
+        } 
+        function calResult()
+        {
+            if(userPts>compPts){
+                result='Wohoo User Wins';
+            }
+            else if(compPts>userPts){
+                result='Uff Computer Wins';
+            }
+            else{
+                result='It\'s a Tie';
+            }
+        }   
+        function displayResult()
+        {
+            alert(`User Points: ${userPts}\n
+            Computer Points: ${compPts}\n
+            Result : ${result}`);
+            userPts=0;
+            compPts=0;
+        } 
+    </script> 
+</body>
+</html>
